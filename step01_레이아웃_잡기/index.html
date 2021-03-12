@@ -1,0 +1,112 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD Xhtml 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+	<link rel="stylesheet" type="text/css" href="../css/accordion.css">
+	<style>
+	 	* {
+	 		padding:0;
+	 		margin:0;
+	 	}
+	 	
+		body{
+			font-size:9pt;
+		
+		}	
+		
+		#accordionMenu1 {
+			margin:100px;
+			width:300px;
+		}
+	</style>
+
+	<script src="../libs/jquery-1.11.0.min.js"></script>
+	<script src="../libs/jquery.easing.1.3.js"></script>
+	<script src="accordion.js"></script>
+	<script>
+		/*
+		 * step #01
+		 * 	- 레이아웃 잡기
+		 *
+		 */
+
+		$(document).ready(function(){
+
+			var accordion =  new FolderAccordionMenu(".accordion-menu");
+			
+			/*accordion.openSubMenuAt(0, true);
+			accordion.closeSubMenuAt(2, true);
+			accordion.selectMenu(1,1, true);*/
+
+			accordion.$accordionMenu.on("open",function(e){
+				console.log("open", e.$target.find(".main-title a").text());
+			})
+
+			accordion.$accordionMenu.on("close",function(e){
+				console.log("close", e.$target.find(".main-title a").text());
+			})
+
+			/* select 이벤트 리스너를 추가해 이벤트에 담겨온 정보를 출력하는 코드 작성 */
+			accordion.$accordionMenu.on("select",function(e){
+				var oldText = "없음";
+				if(e.$oldItem)
+					oldText = e.$oldItem.text();
+					console.log("select old =" ,oldText+",new = "+e.$newItem.text());
+			})
+
+				
+
+
+		})		
+	
+
+
+	</script>
+
+</head>
+
+<body>	
+
+	<ul class="accordion-menu" id="accordionMenu1">
+		<li data-extension="open">
+			<div class="main-title"><span class="folder"> </span><a>menu1</a></div>
+			<ul class="sub">
+				<li><a>sub1-1</a></li>
+				<li><a>sub1-2</a></li>
+				<li><a>sub1-3</a></li>
+				<li><a>sub1-4</a></li>
+			</ul>
+		</li>		
+		
+		<li>
+			<div class="main-title"><span class="folder"> </span><a>menu2</a></div>
+			<ul class="sub">
+				<li><a>sub2-1</a></li>
+				<li><a>sub2-2</a></li>
+			</ul>
+		</li>	
+		<li data-extension="open">
+			<div class="main-title">
+				<span class="folder"> </span><a>menu3</a> 
+			</div>
+			<ul class="sub">
+				<li><a>sub3-1</a></li>
+				<li><a>sub3-2</a></li>
+				<li><a>sub3-3</a></li>
+				<li><a>sub3-4</a></li>
+				<li><a>sub3-5</a></li>
+				<li><a>sub3-6</a></li>
+			</ul>
+		</li>
+		<li>
+			<div class="main-title"><span class="folder"> </span><a>menu4</a></div>
+		</li>
+	</ul> 
+
+</body>
+
+
+</html>
+
+
+
